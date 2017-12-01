@@ -22,11 +22,6 @@ resources:
       initializeParams:
         diskName: {{ name_stub }}-{{ n }}-boot
         sourceImage: https://www.googleapis.com/compute/v1/projects/{{ properties["image-project"] }}/global/images/{{ properties["image"] }}
-    - deviceName: brick
-      source: $(ref.{{ name_stub }}-{{ n }}-brick.selfLink)
-      type: PERSISTENT
-      boot: false
-      autoDelete: false
     networkInterfaces:
     - network: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/global/networks/default 
       accessConfigs:
