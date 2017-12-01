@@ -1,0 +1,14 @@
+imports:
+- path: custom_vms.jinja
+
+resources:
+- name: custom_vms
+  type: custom_vms.jinja
+  properties:
+    region: us-central1
+    zones: ['us-central1-b', 'us-central1-c', 'us-central1-f']
+    image-project: debian-cloud 
+    image: debian-8-jessie-v20160606
+    type: f1-micro
+    nodes: 3
+    replicas: 3
