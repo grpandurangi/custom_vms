@@ -11,4 +11,4 @@ resources:
     image: debian-8-jessie-v20160606
     type: f1-micro
     nodes: 3
-    replicas: 3
+    name-stub: 'custom_vms'
