@@ -10,5 +10,5 @@ resources:
     image-project: debian-cloud 
     image: debian-8-jessie-v20160606
     type: f1-micro
-    nodes: 3
-    name-stub: 'custom-vms'
+    vm-names: ['super-pundits','amazing-coders','marvelous-ganga','godavari-geeks']
+

@@ -1,15 +1,15 @@
 
 {% set zones      = properties["zones"] %}
-{% set num_nodes  = properties["nodes"] %}
-{% set nodes      = range(num_nodes) %}
-{% set name_stub  = properties["name-stub"] %}
+{% set vm-names   = properties["vm-names"] %}
+{% set num_nodes  = length(vm-names) %}
+{% set nodes      = range(vm-names) %}
 {% set num_zones  = zones|length %}
 
 resources:
   
-{% for n in nodes %}
+{% for vmname in vm-names %}
   {% set zone = zones[n % num_zones] %}
-- name: {{ name_stub }}-{{ n }}
+- name: {{ vmname }}
   type: compute.v1.instance
   properties:
     zone: {{ zone }} 
@@ -20,7 +20,7 @@ resources:
       boot: true
       autoDelete: true
       initializeParams:
-        diskName: {{ name_stub }}-{{ n }}-boot
+        diskName: {{ vmname }}-boot
         sourceImage: https://www.googleapis.com/compute/v1/projects/{{ properties["image-project"] }}/global/images/{{ properties["image"] }}
     networkInterfaces:
     - network: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/global/networks/default 
