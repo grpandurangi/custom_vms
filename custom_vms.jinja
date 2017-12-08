@@ -1,13 +1,13 @@
 
 {% set zones      = properties["zones"] %}
-{% set vm-names   = properties["vm-names"] %}
+{% set vm_names   = properties["vm-names"] %}
 {% set num_nodes  = length(vm-names) %}
 {% set nodes      = range(vm-names) %}
 {% set num_zones  = zones|length %}
 
 resources:
   
-{% for vmname in vm-names %}
+{% for vmname in vm_names %}
   {% set zone = zones[n % num_zones] %}
 - name: {{ vmname }}
   type: compute.v1.instance
