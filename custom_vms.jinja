@@ -1,7 +1,7 @@
 
 {% set zones      = properties["zones"] %}
 {% set vm_names   = properties["vm-names"] %}
-{% set n          = vm_names|length %}
+{% set n          = len(vm_names) %}
 {% set num_zones  = zones|length %}
 
 resources:
