@@ -8,7 +8,7 @@ resources:
   type: iam.v1.serviceAccounts.key
   properties:
     parent: $(ref.dav-test-serviceaccount.name)
-- name: slr-storagebucket-test-01
+- name: dav-storagebucket-test-01
   type: storage.v1.bucket
   properties:
     storageClass: MULTI_REGIONAL
