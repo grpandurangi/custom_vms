@@ -1,0 +1,40 @@
+resources:
+- name: dav-test-serviceaccount
+  type: iam.v1.serviceAccount
+  properties:
+    accountId: dav-test-svc
+    displayName: dav-test-svc
+- name: dav-test-svc-key
+  type: iam.v1.serviceAccounts.key
+  properties:
+    parent: $(ref.dav-test-serviceaccount.name)
+- name: slr-storagebucket-test-01
+  type: storage.v1.bucket
+  properties:
+    storageClass: MULTI_REGIONAL
+    versioning:
+      enabled: false
+    lifecycle:
+      rule:
+      - action:
+          type: Delete
+        condition:
+          age: 365
+    acl:
+    - role: OWNER
+      entity: "project-owners-123456789012"
+    - role: OWNER
+      entity: "project-editors-123456789012"
+    - role: READER
+      entity: "project-viewers-123456789012"
+    - role: WRITER
+      entity: "user-$(ref.dav-test-serviceaccount.email)"
+# TODO: figure out how to get project-owners et.al. by reference
+outputs:
+- name: bucket
+  value: $(ref.dav-storagebucket-test-01.selfLink)
+- name: svcacct
+  value: $(ref.dav-test-serviceaccount.email)
+- name: svcacct-key
+  value: $(ref.dav-test-svc-key.privateKeyData)
+         # this will be base64 encoded
