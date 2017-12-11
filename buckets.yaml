@@ -22,11 +22,11 @@ resources:
           age: 365
     acl:
     - role: OWNER
-      entity: "project-owners-123456789012"
+      entity: "project-owners-1001719135165"
     - role: OWNER
-      entity: "project-editors-123456789012"
+      entity: "project-editors-1001719135165"
     - role: READER
-      entity: "project-viewers-123456789012"
+      entity: "project-viewers-1001719135165"
     - role: WRITER
       entity: "user-$(ref.dav-test-serviceaccount.email)"
 # TODO: figure out how to get project-owners et.al. by reference
